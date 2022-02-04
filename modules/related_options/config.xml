@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>related_options</name>
+	<displayName><![CDATA[Related options]]></displayName>
+	<version><![CDATA[1.0.0]]></version>
+	<description><![CDATA[Options related to the product]]></description>
+	<author><![CDATA[E-cone]]></author>
+	<tab><![CDATA[administration]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+</module>
