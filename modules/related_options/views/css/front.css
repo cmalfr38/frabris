@@ -39,6 +39,7 @@ font-style: normal;
 }
 
 
+
 #related_options_block h2.module-title{
   border-left: 9px solid #efa00b;
   padding-left: 10px;
@@ -334,7 +335,7 @@ left: -13px;
 }
 
 input[type="number"] {
--moz-appearance: textfield;
+-moz-appearance: textfield!important;
 -webkit-appearance: none;
 }
 
