@@ -30,10 +30,11 @@ var secure_key = '{$secure_key}';
             <a class ="show-options" {if $i == 1} style="display: none;" {/if}>{l s='About this option' mod='related_options'}</a>
           </div>
 
-
         <div class="options-list">
           {foreach from=$cat.category_options item=option}
-          <div class="option-item" data-option="{$option.product.id_product}" {if $i != 1} style="display: none;" {/if}>
+          <!-- {$option|@var_dump} -->
+
+          <div class="option-item" data-option="{$option.product.id_product}" ><!-- {if $i != 1} style="display: none;" {/if} -->
 
             <div class="option-item-reset apear" style="display: none;" onclick="clearOpt(this)"><i class="icon-trash"></i></div>
 
