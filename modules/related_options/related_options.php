@@ -57,8 +57,6 @@ class Related_options extends Module
     {
         include(dirname(__FILE__) . '/sql/install.php');
 
-        //Configurat2ion::updateValue('CONFIGURATOR_CATEGORY_ID', null);
-
         return parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader') &&
@@ -304,43 +302,6 @@ class Related_options extends Module
     protected function postProcess()
     {
 
-      // $relop_result = array(
-      //   '326-336' => 1,
-      //   '327-336' => 1,
-      //   '328-336' => 1,
-      //   '319-336' => 1,
-      // );
-      //
-      // $relop_result_2 = array(
-      //   '326-336' => 1,
-      //   '327-336' => 1,
-      //   '328-336' => null,
-      //   '319-336' => 1,
-      // );
-      //
-      // p('RELOP RESULT');
-      // p($relop_result);
-      //
-      // $total = count($relop_result);
-      // p('TOTAL');
-      // p($total);
-      //
-      // $relop_values_2 = array_values($relop_result_2);
-      // $relop_values = array_values($relop_result);
-      // p('RELOP RESULT VALUES');
-      // p($relop_values);
-      //
-      // $balance = array_count_values($relop_values);
-      // p('BALANCE_1');
-      // p($balance);
-      //
-      // $balance_2 = array_count_values($relop_values_2);
-      // p('BALANCE_2');
-      // p($balance_2);
-      //
-      // ddd('toto');
-
-
         $form_values = $this->getConfigFormValues();
         Configuration::updateValue('CONFIGURATOR_CATEGORY_ID', Tools::getValue('CONFIGURATOR_CATEGORY_ID'));
 
@@ -403,8 +364,6 @@ class Related_options extends Module
             }
           }
 
-          // p('RELOP RESULT 456');
-          // p($relop_result);
           $total = count($relop_result);
           $relop_values = array_values($relop_result);
           $balance = array_diff($relop_values, [1] );
@@ -540,21 +499,6 @@ class Related_options extends Module
 
         $options_visible = $_POST['visible'];
 
-        // echo'options:</br>';
-        // var_dump($options);
-        // echo'</br></br>product_id:</br>';
-        // var_dump($product_id);
-        // echo'</br></br>checkeds:</br>';
-        // var_dump($checkeds);
-        // echo'</br></br>quantities:</br>';
-        // var_dump($quantities);
-        // echo'</br></br>packages:</br>';
-        // var_dump($packages);
-        // echo'</br></br>options_visible:</br>';
-        // var_dump($options_visible);
-        // echo'</br></br>';
-        // die('dump finished');
-
         $vis_class = new RelatedOptionVisibleClass();
         $vis_class->setProductVisible($product_id, $options_visible);
 
@@ -568,7 +512,6 @@ class Related_options extends Module
         $visClass = new RelatedOptionVisibleClass();
 
         $ajax_add_to_cart =  (bool)Tools::getValue('PS_BLOCK_CART_AJAX', Configuration::get('PS_BLOCK_CART_AJAX'));
-        // var_dump($ajax_add_to_cart);
         $main_product_id = Tools::getValue('id_product');
         $main_product = new Product($main_product_id);
         $pictures = Product::getCover($main_product_id);
@@ -586,10 +529,6 @@ class Related_options extends Module
         $category_tree = Category::getNestedCategories($configurator_cat_id, $this->context->language->id);
         $subCat = $category_tree[$configurator_cat_id]['children'];
 
-        // if (!$this->context->cart->id) {
-        //     var_dump('cart is null');
-        // }
-
         $tree = array();
         foreach ($subCat as $cat) {
             //on regarde si la catégorie est paramétrée comme visible pour le produit principal
@@ -604,11 +543,6 @@ class Related_options extends Module
                 foreach ($products as $product) {
                     //on regarde si l'option est paramétrée comme visible pour le produit principal
                     $visItem = $visClass->isRow($main_product_id, $product['id_product']);
-
-                    //@TODO comprendre pourquoi retourne toujours visible
-                    // $isVisible = ($visItem['visible'] === '1');
-                    // var_dump($isVisible);
-                    // echo('<br><br>');
 
                     //condition de recuperation du produit
                     if ($visItem['visible'] == '1' && $product['active'] && $product['available_for_order']) {
@@ -631,7 +565,6 @@ class Related_options extends Module
                         );
                     }
                 }
-                //ddd($cat_options);
 
                 $cat_cover = $img_dir . 'tmp/category_' . $cat['id_category'] . '.jpg';
 
@@ -662,8 +595,7 @@ class Related_options extends Module
     public function hookActionAfterDeleteProductInCart($params)
     {
 
-        //var_dump($params);
-        //var_dump($stop);
+        //@TODO clean related_product when main product is deleted from cart
 
         // if ($this->context->cart->nbProducts()) {
         //     $only_additional_products = true;
