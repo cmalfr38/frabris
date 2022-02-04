@@ -2,7 +2,7 @@
 <module>
 	<name>related_options</name>
 	<displayName><![CDATA[Options relatives]]></displayName>
-	<version><![CDATA[1.0.0]]></version>
+	<version><![CDATA[1.0.1]]></version>
 	<description><![CDATA[Options relatives au produit]]></description>
 	<author><![CDATA[E-cone]]></author>
 	<tab><![CDATA[administration]]></tab>

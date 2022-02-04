@@ -89,14 +89,21 @@ function reduceOptions(){
   for (var i = 0; i < blockCategories.length; i++) {
     var blockCat = blockCategories[i];
     var addOptBtn = blockCat.getElementsByClassName('option-add')[0];
+    if(addOptBtn){
+      addOptBtn.style.display = 'none';
+    }
     var indicatifQty = blockCat.getElementsByClassName('indicatif_qty')[0];
+    if(indicatifQty){
+      indicatifQty.style.display = 'none';
+    }
     var categoryLink = blockCat.getElementsByClassName('category-link')[0];
+    if(categoryLink){
+      categoryLink.style.display = 'none';
+    }
     var showOptBtn = blockCat.getElementsByClassName('show-options')[0];
-
-    addOptBtn.style.display = 'none';
-    indicatifQty.style.display = 'none';
-    categoryLink.style.display = 'none';
-    showOptBtn.style.display = 'block';
+    if(showOptBtn){
+      showOptBtn.style.display = 'block';
+    }
 
     var optList = blockCat.getElementsByClassName('option-item');
 
@@ -215,29 +222,40 @@ function showOptionsList(clicked){
     optionsBlock.classList.add('active-category');
 
     var clearBtn = optionsBlock.getElementsByClassName('option-item-reset')[0];
-    clearBtn.style.display = 'none';
+    if(clearBtn){
+      clearBtn.style.display = 'none';
+    }
 
     var showOptBtn = optionsBlock.getElementsByClassName('show-options')[0];
-    showOptBtn.style.display = 'none';
+    if(showOptBtn){
+      showOptBtn.style.display = 'none';
+    }
 
     var addoptbtn = optionsBlock.getElementsByClassName('option-add')[0];
-    addoptbtn.style.display = 'block';
+    if(addoptbtn){
+      addoptbtn.style.display = 'block';
+    }
 
     var indicatifQty = optionsBlock.getElementsByClassName('indicatif_qty')[0];
-    indicatifQty.style.display = 'block';
+    if(indicatifQty){
+      indicatifQty.style.display = 'block';
+    }
 
     var categoryLink = optionsBlock.getElementsByClassName('category-link')[0];
-    categoryLink.style.display = 'block';
+    if(categoryLink){
+      categoryLink.style.display = 'block';
+    }
 
     var optList = optionsBlock.getElementsByClassName('option-item');
-
-    for (var i = 0; i < optList.length; i++) {
-      var opt = optList[i];
-      //console.log(opt);
-      opt.querySelectorAll('.disapear').forEach(function(el) {
-         el.style.display = '';
-      });
-      opt.style.display = '';
+    if(optList){
+      for (var i = 0; i < optList.length; i++) {
+        var opt = optList[i];
+        //console.log(opt);
+        opt.querySelectorAll('.disapear').forEach(function(el) {
+           el.style.display = '';
+        });
+        opt.style.display = '';
+      }
     }
   }
 

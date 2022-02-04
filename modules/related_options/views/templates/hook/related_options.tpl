@@ -11,9 +11,16 @@ var secure_key = '{$secure_key}';
       <h2 class="module-title">{l s='custom your product' mod='related_options'}</h2>
 
       <div id="related-options-accordions">
+
+
+
         {counter assign=i start=0 print=false}
         {foreach from=$tree item=cat}
         {counter}
+        {if $i == 1}
+          {assign var=displayCat value = $cat.category.id_category}
+          {* {$displayCat|@var_dump} *}
+        {/if}
         <div class="category-item {if $i == 1}active-category{/if}" data-category='{$cat.category.id_category}'>
           <div class="category-item-img" style="background-image: url('{$cat.category_cover}');background-size:cover"></div>
           <div class="category-item-content">
@@ -32,8 +39,7 @@ var secure_key = '{$secure_key}';
 
         <div class="options-list">
           {foreach from=$cat.category_options item=option}
-
-          <div class="option-item" data-option="{$option.product.id_product}" ><!-- {if $i != 1} style="display: none;" {/if} -->
+          <div class="option-item" data-option="{$option.product.id_product}" {if $cat.category.id_category != $displayCat} style="display: none;" {/if}>
 
             <div class="option-item-reset apear" style="display: none;" onclick="clearOpt(this)"><i class="icon-trash"></i></div>
 
