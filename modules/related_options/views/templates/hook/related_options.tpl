@@ -32,7 +32,6 @@ var secure_key = '{$secure_key}';
 
         <div class="options-list">
           {foreach from=$cat.category_options item=option}
-          <!-- {$option|@var_dump} -->
 
           <div class="option-item" data-option="{$option.product.id_product}" ><!-- {if $i != 1} style="display: none;" {/if} -->
 
