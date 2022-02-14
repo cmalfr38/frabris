@@ -511,6 +511,34 @@ class Related_options extends Module
         $class = new RelatedOptionClass();
         $visClass = new RelatedOptionVisibleClass();
 
+        // // futur ajax start here
+        //
+        // $configurator_cat_id = Configuration::get('CONFIGURATOR_CATEGORY_ID', null);
+        // $category_tree = Category::getNestedCategories($configurator_cat_id, $this->context->language->id);
+        // $confCat = $category_tree[$configurator_cat_id]['children'];
+        // $confCatIds = array_keys($subCat);
+        //
+        //
+        // $products = $this->context->cart->getProducts();
+        //
+        // $cartIds = array();
+        // foreach ($products as $product){
+        //   $cartIds[] = (int)$product['id_product'];
+        // }
+        //
+        //
+        //
+        // $products = $this->context->cart->getProducts();
+        // foreach($products as $item){
+        //   ppp($item);
+        //   if(!array_key_exists($item['id_category_default'], $confCatIds) && !array_key_exists($item['id_product'], $cartIds)) {
+        //
+        //
+        // }
+        //
+        // // ddd('stop!');
+        // // futur ajax finish here
+
         $ajax_add_to_cart =  (bool)Tools::getValue('PS_BLOCK_CART_AJAX', Configuration::get('PS_BLOCK_CART_AJAX'));
         $main_product_id = Tools::getValue('id_product');
         $main_product = new Product($main_product_id);

@@ -12,8 +12,6 @@ var secure_key = '{$secure_key}';
 
       <div id="related-options-accordions">
 
-
-
         {counter assign=i start=0 print=false}
         {foreach from=$tree item=cat}
         {counter}
@@ -21,6 +19,9 @@ var secure_key = '{$secure_key}';
           {assign var=displayCat value = $cat.category.id_category}
           {* {$displayCat|@var_dump} *}
         {/if}
+
+
+        {if $cat.category_options|@count >= 1}
         <div class="category-item {if $i == 1}active-category{/if}" data-category='{$cat.category.id_category}'>
           <div class="category-item-img" style="background-image: url('{$cat.category_cover}');background-size:cover"></div>
           <div class="category-item-content">
@@ -113,6 +114,7 @@ var secure_key = '{$secure_key}';
           </div>
         </div>
         </div>
+        {/if}
         {/foreach}
 
 

@@ -425,6 +425,7 @@ $(document).on("click touchend", "#cart-summary", function(e) {
   var toCart = [];
   var mainProduct = {
     product_id: product_id,
+    type:'main',
     var_id: null,
     qty: 1
   };
@@ -450,6 +451,7 @@ $(document).on("click touchend", "#cart-summary", function(e) {
 
          var option = {
            product_id: product_id,
+           type:'option',
            var_id: var_id,
            qty: qty
          };
