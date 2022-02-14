@@ -183,7 +183,6 @@ font-style: normal;
 
 .category-link a:hover{
   color: #EA670B;
-  font-weight: bold;
 }
 
 /* STYLES DES OPTIONS */

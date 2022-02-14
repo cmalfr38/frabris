@@ -43,7 +43,11 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'related_options_visible
     PRIMARY KEY  (`id_related_options_visible`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
 
-$sql[] = "INSERT INTO `" . _DB_PREFIX_ . "hook` (`name`, `title`, `description`, `position`, `live_edit`) VALUES ('displayProductOptions', 'displayProductOptions', 'Display products options in product page', 1, 1);
+$sql[] = "INSERT INTO `" . _DB_PREFIX_ . "hook` (`name`, `title`, `description`, `position`, `live_edit`) VALUES ('displayProductOptions', 1
+`title` = displayProductOptions,
+`description` = Display products options in product page,
+`position` = 1,
+`live_edit` = 1';
 
 foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {
