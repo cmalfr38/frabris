@@ -36,6 +36,7 @@ var secure_key = '{$secure_key}';
               {*<div class="indicatif_qty indicatif_empty">{l s='Remember to calculate the necessary quantity of your option, before finalizing your order' mod='related_options'}</div>*}
             {/if}
             <div class="category-link" {if $i != 1} style="display: none;" {/if}>{$cat.category.description_bottom}</div>
+            {/if}
             <a class ="show-options" {if $i == 1} style="display: none;" {/if}>{l s='About this option' mod='related_options'}</a>
           </div>
 

@@ -8,7 +8,7 @@
     {assign var=options value=$input.values.query}
 
     {if isset($options) && count($options) > 0}
-      <div class="form-group {$input.class_block|escape:'html'}" data-configurator ="{$input.configurator_cat_id}"  {if isset($input.tab)}data-tab-id="{$input.tab|escape:'htmlall':'UTF-8'}"{/if} >
+      <div class="form-group {$input.class_block|escape:'html'}" {if isset($input.tab)}data-tab-id="{$input.tab|escape:'htmlall':'UTF-8'}"{/if} >
         <label class="control-label col-lg-3">
         <span class="{if $input.hint}label-tooltip{else}control-label{/if}" data-toggle="tooltip" data-html="true" title="" data-original-title="{$input.hint|escape:'htmlall':'UTF-8'}">
           {$input.label|escape:'htmlall':'UTF-8'}
