@@ -42,6 +42,12 @@ $(window).load(function() {
     }, 1000);
   });
 
+  var initCatAccordion = $('.category-item-img')[0];
+  if(initCatAccordion){
+      $(initCatAccordion).trigger("click");
+  }
+
+
 });
 
 //déplier l'accordeon au click sur l'image
