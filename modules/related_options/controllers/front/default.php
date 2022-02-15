@@ -77,16 +77,17 @@ class Related_OptionsDefaultModuleFrontController extends ModuleFrontController
         $count_op = 0;
         if(is_array($toCart)){
           foreach($toCart as $item){
-            if($item['type'] == 'main' && array_key_exists($item['product_id'], $cartIds)){
-              //none
+            if($item['type'] === 'main' && in_array($item['product_id'], $cartIds)){
+              $op = $cart->updateQty(10, $item['product_id'],  $item['var_id'], false, 'down');
             }else{
               $op = $cart->updateQty($item['qty'], $item['product_id'],  $item['var_id']);
-              if($op === true){
-                $count_op++;
-              }
             }
-          }
 
+            if($op === true){
+              $count_op++;
+            }
+            // if($item['type'] === 'option' || !in_array($item['product_id'], $cartIds)){}
+          }
 
           $count = count($toCart);
           $success = ($count_op == $count);

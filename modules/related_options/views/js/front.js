@@ -423,16 +423,20 @@ $(document).on("click touchend", "#cart-summary", function(e) {
   var product_id = this.dataset.main;
 
   var toCart = [];
+  var main_qty = 1;
+
+  if(popup){
+    main_qty = 0;
+  }
+
   var mainProduct = {
     product_id: product_id,
     type:'main',
     var_id: null,
-    qty: 1
+    qty: main_qty,
   };
+  toCart.push(mainProduct);
 
-  if(!popup){
-    toCart.push(mainProduct);
-  }
 
   var catOptionBlocks = document.getElementsByClassName('options-list');
   for (var i = 0; i < catOptionBlocks.length; i++) {
