@@ -47,7 +47,6 @@ $(window).load(function() {
       $(initCatAccordion).trigger("click");
   }
 
-
 });
 
 //déplier l'accordeon au click sur l'image
@@ -119,10 +118,6 @@ function reduceOptions(){
       var qtyBlock = opt.getElementsByClassName("option-item-qty")[0];
       var qty = qtyBlock.getElementsByClassName('quantity-field')[0].value;
 
-      // opt.querySelectorAll('.apear').forEach(function(el) {
-      //   el.style.display = 'block';
-      // }
-
       if(qty>0){
         opt.querySelectorAll('.apear').forEach(function(el) {
            el.style.display = 'block';
@@ -133,8 +128,6 @@ function reduceOptions(){
       }else{
         opt.style.display = 'none';
       }
-
-      //item.classList.remove('show');
     }
 
   }
