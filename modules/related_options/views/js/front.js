@@ -55,7 +55,7 @@ $(document).on("click", ".category-item-img", function(e) {
   var title = categoryBlock.getElementsByClassName('category-title')[0];
   showOptionsList(title);
 });
-//deplier l'accorderon au click sur le titre ou le bouton "voir l'option"
+//deplier l'accorderon au click sur le titre ou le bouton "voir option"
 $(document).on("click touchend", ".show-options, .category-title", function (e) {
   showOptionsList(this);
 });
