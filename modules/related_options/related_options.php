@@ -57,7 +57,7 @@ class Related_options extends Module
     {
         include(dirname(__FILE__) . '/sql/install.php');
 
-        return parent::install() &&
+        $installed = parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader') &&
             $this->registerHook('displayAdminProductsExtra') &&
@@ -511,33 +511,6 @@ class Related_options extends Module
         $class = new RelatedOptionClass();
         $visClass = new RelatedOptionVisibleClass();
 
-        // // futur ajax start here
-        //
-        // $configurator_cat_id = Configuration::get('CONFIGURATOR_CATEGORY_ID', null);
-        // $category_tree = Category::getNestedCategories($configurator_cat_id, $this->context->language->id);
-        // $confCat = $category_tree[$configurator_cat_id]['children'];
-        // $confCatIds = array_keys($subCat);
-        //
-        //
-        // $products = $this->context->cart->getProducts();
-        //
-        // $cartIds = array();
-        // foreach ($products as $product){
-        //   $cartIds[] = (int)$product['id_product'];
-        // }
-        //
-        //
-        //
-        // $products = $this->context->cart->getProducts();
-        // foreach($products as $item){
-        //   ppp($item);
-        //   if(!array_key_exists($item['id_category_default'], $confCatIds) && !array_key_exists($item['id_product'], $cartIds)) {
-        //
-        //
-        // }
-        //
-        // // ddd('stop!');
-        // // futur ajax finish here
 
         $ajax_add_to_cart =  (bool)Tools::getValue('PS_BLOCK_CART_AJAX', Configuration::get('PS_BLOCK_CART_AJAX'));
         $main_product_id = Tools::getValue('id_product');
@@ -639,34 +612,5 @@ class Related_options extends Module
         // }
     }
 
-    private function buildVariationList($combinations, $link_rewrite)
-    {
-        $class = new RelatedOptionClass();
 
-        $groups = array();
-        foreach ($combinations as $combination) {
-
-            $color_group = ($combination['is_color_group'] == '1') ? true : false;
-            $attribute = null;
-            $optionPix = $class->getOptionPictureId($combination['id_product_attribute']);
-            if ($optionPix != null) {
-                $path = $this->context->link->getimageLink($link_rewrite, $optionPix['id_image'], ImageType::getFormatedName('thickbox'));
-                $attribute = $path;
-            }
-
-            if ($color_group) {
-                $ps_attribute = new Attribute($combination['id_attribute'], $this->context->language->id);
-                $attribute = $ps_attribute->color;
-            }
-
-            $groups[$combination['id_attribute_group']]['type'] = ($color_group) ? 'color_group' : 'else';
-            $groups[$combination['id_attribute_group']]['variations'][] = array(
-                'libelle' => $combination['attribute_name'],
-                'value' => $combination['id_product_attribute'],
-                'attribute' => $attribute
-            );
-        }
-
-        return $groups;
-    }
 }

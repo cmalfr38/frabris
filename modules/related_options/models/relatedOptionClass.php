@@ -105,9 +105,7 @@ class RelatedOptionClass extends ObjectModel
 				$oSql->select('id_image');
 				$oSql->from('product_attribute_image', 'p');
 				$oSql->where('p.id_product_attribute = '.(int)$id_product_attribute);
-
 				//return Db::getInstance()->executeS($oSql);
-
 				$result = Db::getInstance()->getRow($oSql);
 
 				return $result;
