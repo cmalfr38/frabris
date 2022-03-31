@@ -26,7 +26,7 @@
 * to avoid any conflicts with others containers.
 */
 
-console.log('related_options JS fired !');
+console.log('ecConfigurator JS fired !');
 
 $(window).load(function() {
   $.uniform.restore(".noUniform");
@@ -415,27 +415,50 @@ function countQtyOptBlock(){
 
 
 
-$(document).on("click touchend", "#cart-summary", function(e) {
+$(document).on("click", "#cart-summary", function(e) {
   //console.log('cart-summary');
   var cart_url = document.getElementById('buy_block').action;
+  var ipa = document.getElementById('idCombination').value;
+
   var popup = this.classList.contains('popup_mode');
   var product_id = this.dataset.main;
 
   var toCart = [];
   var main_qty = 1;
-
   if(popup){
     main_qty = 0;
   }
 
+  //recuperation des id des attributs sélectionnés
+  // var attr_container = document.getElementById('attributes');
+  // var variations = [];
+  // if(attr_container){
+  //    var attrVal = null;
+  //    var fieldset = attr_container.getElementsByClassName('attribute_list');
+  //
+  //    for (var i = 0; i < fieldset.length; i++) {
+  //      var hiddenField = fieldset[i].querySelector("input[type='hidden']");
+  //      if(hiddenField){
+  //        attrVal = hiddenField.value
+  //        console.log(attrVal);
+  //      }
+  //
+  //      var selectField = fieldset[i].querySelector("select");
+  //      if(selectField){
+  //        attrVal = selectField.options[selectField.selectedIndex].value;
+  //        console.log(attrVal);
+  //      }
+  //
+  //    }
+  // }
+
   var mainProduct = {
     product_id: product_id,
     type:'main',
-    var_id: null,
+    var_id: ipa,
     qty: main_qty,
   };
   toCart.push(mainProduct);
-
 
   var catOptionBlocks = document.getElementsByClassName('options-list');
   for (var i = 0; i < catOptionBlocks.length; i++) {
@@ -446,10 +469,6 @@ $(document).on("click touchend", "#cart-summary", function(e) {
          var product_id = optionBlock.dataset.option;
          var qty = optionBlock.getElementsByClassName('quantity-field')[0].value;
          var var_input = optionBlock.getElementsByClassName('input-attribute')[0];
-         // var var_input = optionBlock.getElementsByClassName('var_list')[0];
-         //
-         // console.log(var_input);
-
          var var_id = getVariationValue(var_input);
 
          var option = {
@@ -464,7 +483,6 @@ $(document).on("click touchend", "#cart-summary", function(e) {
          }
      }
    }
-
 
    $.ajax({
        url: relatedOptions_url + '?action=suboptocart&secure_key=' + secure_key + '&rand=' + new Date().getTime(),

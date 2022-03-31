@@ -477,6 +477,7 @@ class EcConfigurator extends Module
                     $opt_product = new Product($option['id_product']);
                     $groups = $opt_product->getAttributesGroups($this->context->language->id);
                     $combinations = $opt_product->getAttributeCombinations($this->context->language->id);
+
                     $variations_groups = $this->buildVariationList($combinations, $option['link_rewrite']);
 
                     $cat_options[$option['id_product']] = array(
@@ -587,7 +588,9 @@ class EcConfigurator extends Module
 
             if ($color_group) {
                 $ps_attribute = new Attribute($combination['id_attribute'], $this->context->language->id);
-                $attribute = $ps_attribute->color;
+                $combinationsDirectory = 'img/co';
+                $attributeImg = $this->context->link->getimageLink($combination['id_attribute'], 'img/co');
+                $attribute = ($ps_attribute->color != null)?$ps_attribute->color:$attributeImg;
             }
 
             $groups[$combination['id_attribute_group']]['type'] = ($color_group) ? 'color_group' : 'else';
@@ -600,6 +603,50 @@ class EcConfigurator extends Module
 
         return $groups;
     }
+
+    function get_web_page($url) {
+        $options = array(
+            CURLOPT_RETURNTRANSFER => true,   // return web page
+            CURLOPT_HEADER         => false,  // don't return headers
+            CURLOPT_FOLLOWLOCATION => true,   // follow redirects
+            CURLOPT_MAXREDIRS      => 10,     // stop after 10 redirects
+            CURLOPT_ENCODING       => "",     // handle compressed
+            CURLOPT_USERAGENT      => "test", // name of client
+            CURLOPT_AUTOREFERER    => true,   // set referrer on redirect
+            CURLOPT_CONNECTTIMEOUT => 120,    // time-out on connect
+            CURLOPT_TIMEOUT        => 120,    // time-out on response
+        );
+
+        $ch = curl_init($url);
+        curl_setopt_array($ch, $options);
+
+        $content  = curl_exec($ch);
+
+        curl_close($ch);
+
+        return $content;
+    }
+
+    // public static function getAttributeImg($id_product_attribute,$id_product)
+    // {
+    //   if (isset($id_product_attribute) && $id_product_attribute) {
+    //         $id_image = Db::getInstance()->getValue('
+    //             SELECT `image_shop`.id_image
+    //             FROM `'._DB_PREFIX_.'product_attribute_image` pai'.
+    //             Shop::addSqlAssociation('image', 'pai', true).'
+    //             LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_image` = pai.`id_image`)
+    //             WHERE id_product_attribute = '.(int)$id_product_attribute. ' ORDER by i.position ASC');
+    //     }
+    //     if (!isset($id_image) || !$id_image) {
+    //         $id_image = Db::getInstance()->getValue('
+    //             SELECT `image_shop`.id_image
+    //             FROM `'._DB_PREFIX_.'image` i'.
+    //             Shop::addSqlAssociation('image', 'i', true, 'image_shop.cover=1').'
+    //             WHERE i.id_product = '.(int)$id_product
+    //         );
+    //     }
+    //         return $id_image;
+    // }
 
 
 }
