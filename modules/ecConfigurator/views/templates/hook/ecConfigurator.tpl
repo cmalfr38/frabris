@@ -98,8 +98,6 @@ var secure_key = '{$secure_key}';
             </div>
 
             {foreach from=$option.product_variations_groups item=group}
-
-
             {if $group.type == "color_group"}
             <div class="option-variation-color disapear">
               <p class="variation-title">{l s='Color' mod='related_options'}</p>
