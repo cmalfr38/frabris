@@ -110,5 +110,4 @@ class ecConfiguratorOptionClass extends ObjectModel
 				return $result;
 		}
 
-
 }

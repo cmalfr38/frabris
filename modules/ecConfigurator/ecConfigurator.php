@@ -71,6 +71,7 @@ class EcConfigurator extends Module
              $this->registerHook('backOfficeHeader') &&
              $this->registerHook('displayAdminProductsExtra') &&
              $this->registerHook('displayEcConfigurator') &&
+             $this->registerHook('hookDisplayShoppingCart') &&
              $this->registerHook('actionProductUpdate') &&
              $this->registerHook('actionAfterDeleteProductInCart');
 
@@ -438,7 +439,6 @@ class EcConfigurator extends Module
 
     }
 
-
     public function hookDisplayEcConfigurator($params)
     {
         $main_product_id = Tools::getValue('id_product');
@@ -600,6 +600,46 @@ class EcConfigurator extends Module
 
         return $groups;
     }
+
+    /**
+    * hookDisplayShoppingCart
+    *
+    * Shopping cart extra button
+    * Display some specific informations
+    **/
+    // public function hookDisplayShoppingCart($params)
+    // {
+    //   ppp("hookDisplayShoppingCart");
+    //
+    //   $products = $params['products'];
+    //   $i = 0;
+    //   foreach($products as $product){
+    //     $test = $this->confOptManager->isOption($product['id_product']);
+    //     ppp($test);
+    //     $i++;
+    //   }
+    //
+    //   if (!$this->context->cart->id){
+    //     $cart = new Cart();
+    //     $cart->id_customer = (int)($this->context->cookie->id_customer);
+    //     $cart->id_address_delivery = (int)  (Address::getFirstCustomerAddressId($cart->id_customer));
+    //     $cart->id_address_invoice = $cart->id_address_delivery;
+    //     $cart->id_lang = (int)($this->context->cookie->id_lang);
+    //     $cart->id_currency = (int)($this->context->cookie->id_currency);
+    //     $cart->id_carrier = 1;
+    //     $cart->recyclable = 0;
+    //     $cart->gift = 0;
+    //     $cart->add();
+    //     $this->context->cookie->id_cart = (int)($cart->id);
+    //     $this->context->cart = $cart;
+    //   }
+    //
+    //   $cart = $this->context->cart;
+    //
+    //   ppp($cart);
+    //
+    //   return null;
+    // }
 
 
 }
