@@ -476,14 +476,16 @@ class EcConfigurator extends Module
                     $cover = $this->context->link->getimageLink($option['link_rewrite'], $images['id_image'], ImageType::getFormatedName('home'));
                     $opt_product = new Product($option['id_product']);
                     $groups = $opt_product->getAttributesGroups($this->context->language->id);
+                    $variations_libelle = (!empty($groups))?$groups[0]['public_group_name']:null;
+                    //@TODO récupérer le libelle (nom_public de l'attribute) dans la langue du site !
                     $combinations = $opt_product->getAttributeCombinations($this->context->language->id);
-
                     $variations_groups = $this->buildVariationList($combinations, $option['link_rewrite']);
 
                     $cat_options[$option['id_product']] = array(
                         'product' => $option,
                         'product_cover' => $cover,
                         'product_price' => Product::getPriceStatic($option['id_product']),
+                        'product_variations_name' => $variations_libelle,
                         'product_variations_groups' => $variations_groups
                     );
                 }

@@ -102,7 +102,7 @@ var secure_key = '{$secure_key}';
 
             {if $group.type == "color_group"}
             <div class="option-variation-color disapear">
-              <p class="variation-title">{l s='Color' mod='related_options'}</p>
+              <p class="variation-title">{$option.product_variations_name}</p>
               <ul data-var ='{$group.variations.0.value}'>
                 {counter assign=i start=0 print=false}
                 {foreach from=$group.variations item=var}

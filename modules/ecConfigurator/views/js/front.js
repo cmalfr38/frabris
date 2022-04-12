@@ -71,7 +71,7 @@ $(document).on("click", ".button-plus, .button-minus", function(e) {
 
 
 $(document).on("click", "#quotes-cart-trigger", function(e) {
-  var quoteBtn = $('.fly_to_quote_cart_button', '.box-info-product')[0];
+  var quoteBtn = $('.fly_to_quote_cart_button')[0];
     //console.log(quoteBtn);
   $(quoteBtn).click();
 });
