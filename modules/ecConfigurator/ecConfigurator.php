@@ -477,6 +477,7 @@ class EcConfigurator extends Module
                     $opt_product = new Product($option['id_product']);
                     $groups = $opt_product->getAttributesGroups($this->context->language->id);
                     $combinations = $opt_product->getAttributeCombinations($this->context->language->id);
+
                     $variations_groups = $this->buildVariationList($combinations, $option['link_rewrite']);
 
                     $cat_options[$option['id_product']] = array(
@@ -587,7 +588,9 @@ class EcConfigurator extends Module
 
             if ($color_group) {
                 $ps_attribute = new Attribute($combination['id_attribute'], $this->context->language->id);
-                $attribute = $ps_attribute->color;
+                $combinationsDirectory = 'img/co';
+                $attributeImg = $this->context->link->getimageLink($combination['id_attribute'], 'img/co');
+                $attribute = ($ps_attribute->color != null)?$ps_attribute->color:$attributeImg;
             }
 
             $groups[$combination['id_attribute_group']]['type'] = ($color_group) ? 'color_group' : 'else';
