@@ -483,10 +483,6 @@ $(document).on("click", "#cart-summary", function(e) {
     qty: main_qty,
   };
 
-console.log(mainProduct);
-
-  toCart.push(mainProduct);
-
   var catOptionBlocks = document.getElementsByClassName('options-list');
   for (var i = 0; i < catOptionBlocks.length; i++) {
      var optionBlocks = catOptionBlocks[i].getElementsByClassName('option-item');
@@ -496,10 +492,6 @@ console.log(mainProduct);
          var product_id = optionBlock.dataset.option;
          var qty = optionBlock.getElementsByClassName('quantity-field')[0].value;
          var var_input = optionBlock.getElementsByClassName('input-attribute')[0];
-         // var var_input = optionBlock.getElementsByClassName('var_list')[0];
-         //
-         // console.log(var_input);
-
          var var_id = getVariationValue(var_input);
 
          var option = {
@@ -514,7 +506,6 @@ console.log(mainProduct);
          }
      }
    }
-
 
    $.ajax({
        url: relatedOptions_url + '?action=suboptocart&secure_key=' + secure_key + '&rand=' + new Date().getTime(),
