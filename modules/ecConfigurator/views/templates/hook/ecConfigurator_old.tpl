@@ -1,6 +1,6 @@
 
 <script type="text/javascript">
-var ecConfigurator_url = '{$ecConfigurator_controller_url}';
+var relatedOptions_url = '{$related_options_controller_url}';
 var secure_key = '{$secure_key}';
 </script>
 
@@ -12,7 +12,7 @@ var secure_key = '{$secure_key}';
 {if !empty($tree)}
 <section id="related_options_block" class="page-product-box">
   <div class="container">
-      <div class="module-title h2">{l s='Les indispensables' mod='ecConfigurator'}</div>
+      <div class="module-title h2">{l s='Les indispensables' mod='related_options'}</div>
 
       <div id="related-options-accordions">
 
@@ -31,17 +31,17 @@ var secure_key = '{$secure_key}';
           <div class="category-item-content">
             <div class="category-title h2">{$cat.category.name}</div>
 
-            <div class="category-desc">{$cat.category.description}</div>
+            <div>{$cat.category.description}</div>
 
             {if $cat.category_qty != 0}
             <div class="indicatif_qty">
-              {l s='With this product you need' mod='ecConfigurator'} <strong>{$cat.category_qty} {$cat.category_pack}</strong>
+              {l s='With this product you need' mod='related_options'} <strong>{$cat.category_qty} {$cat.category_pack}</strong>
             </div>
             {else}
-              {*<div class="indicatif_qty indicatif_empty">{l s='Remember to calculate the necessary quantity of your option, before finalizing your order' mod='ecConfigurator'}</div>*}
+              {*<div class="indicatif_qty indicatif_empty">{l s='Remember to calculate the necessary quantity of your option, before finalizing your order' mod='related_options'}</div>*}
             {/if}
             <div class="category-link">{$cat.category.description_bottom}</div>
-            {* <a class ="show-options" {if $i == 1} style="display: none;" {/if}>{l s='About this option' mod='ecConfigurator'}</a> *}
+            {* <a class ="show-options" {if $i == 1} style="display: none;" {/if}>{l s='About this option' mod='related_options'}</a> *}
           </div>
 
         <div class="options-list">
@@ -78,13 +78,13 @@ var secure_key = '{$secure_key}';
 
             <div class="option-item-right">
               <div class="option-item-price">
-                  <p class="unit-price">{l s='Prix unitaire' mod='ecConfigurator'}</p>
+                  <p class="unit-price">{l s='Prix unitaire' mod='related_options'}</p>
                   <p class="current-price" data-price="{$option.product_price|string_format:"%.2f"}" data-sign="{$currency->sign}">{$option.product_price|string_format:"%.2f"} {$currency->sign}</p>
                   <!-- <p class="previous-price">000.00 {$currency->sign}</p> -->
                 </div>
               <div class="option-item-background">
                 <div class="option-item-qty">
-                  <label>{l s='Qty' mod='ecConfigurator'}</label>
+                  <label>{l s='Qty' mod='related_options'}</label>
                   <input type="button" value="-" class="button-minus" data-field="quantity">
                   <input type="number" value="0" name="quantity" class="quantity-field">
                   <input type="button" value="+" class="button-plus" data-field="quantity">
@@ -123,7 +123,7 @@ var secure_key = '{$secure_key}';
               </ul>
 
               <div class="variation-add" style="display:none;">
-                <button onclick="addVariation(this)">{l s='more color' mod='ecConfigurator'}</button>
+                <button onclick="addVariation(this)">{l s='more color' mod='related_options'}</button>
               </div>
 
             </div>
@@ -132,7 +132,7 @@ var secure_key = '{$secure_key}';
           </div>
           {/foreach}
           {* <div class="option-add"  {if $i != 1} style="display: none;" {/if}>
-            <button onclick="addOption(this)">{l s='show next option' mod='ecConfigurator'}</button>
+            <button onclick="addOption(this)">{l s='show next option' mod='related_options'}</button>
           </div> *}
         </div>
         </div>
@@ -154,16 +154,18 @@ var secure_key = '{$secure_key}';
         <div class="summary-content">
           <p class="h2">{$main_product.name}</p>
           <p>{l s='Référence :'} <span>ID{$product->id|intval}</span></p>
+        </div>
+        <div class="summary-pr">
           <p class="product-price" data-price ="{$main_product.price}" data-currency="{$currency->sign}"><span>{$main_product.price|string_format:"%.2f"} {$currency->sign}</span> TTC</p>
+          <p class="options-price"><span id="sum-opt-count">0</span> options : <span id="sum-opt-total">{0|string_format:"%.2f"}{$currency->sign}</span> TTC</p>
         </div>
         <div class="summary-tot">
-          <p>{l s='Total :' mod='ecConfigurator'}</p>
+          <p>{l s='Total :' mod='related_options'}</p>
           <p class="summary-total"><span id="summary-fullprice">{$main_product.price|string_format:"%.2f"} {$currency->sign}</span> TTC</p>
-          <p class="options-price">dont <span id="sum-opt-count">0</span> options : <span id="sum-opt-total">{0|string_format:"%.2f"}{$currency->sign}</span> TTC</p>
         </div>
         <div class="summary-price">
-          <button id="cart-summary" data-main="{$main_product.id}"  {if $ajax_add_to_cart == 1} class="popup_mode" {/if}>{l s='add to cart' mod='ecConfigurator'}</button>
-          <button id="quotes-cart-trigger">{l s='add to quote' mod='ecConfigurator'}</button>
+          <button id="cart-summary" data-main="{$main_product.id}"  {if $ajax_add_to_cart == 1} class="popup_mode" {/if}>{l s='add to cart' mod='related_options'}</button>
+          <button id="quotes-cart-trigger">{l s='quote' mod='related_options'}</button>
         </div>
 
       </div>

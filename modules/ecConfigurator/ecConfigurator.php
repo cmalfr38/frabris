@@ -485,7 +485,7 @@ class EcConfigurator extends Module
                         'product' => $option,
                         'product_cover' => $cover,
                         'product_price' => Product::getPriceStatic($option['id_product']),
-                        'product_variations_name' => $variations_libelle,
+                        'product_variations_title' => $variations_libelle,
                         'product_variations_groups' => $variations_groups
                     );
                 }
@@ -511,7 +511,7 @@ class EcConfigurator extends Module
             'main_product'    => $main_product_data,
             'secure_key' => $this->secure_key,
             'ajax_add_to_cart' => $ajax_add_to_cart,
-            'related_options_controller_url' => $ajax_url
+            'ecConfigurator_controller_url' => $ajax_url
         ));
 
         return $this->display(__FILE__, 'views/templates/hook/ecConfigurator.tpl');

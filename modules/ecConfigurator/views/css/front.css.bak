@@ -631,7 +631,7 @@ background: grey;
     font-weight: 500;
     color: #777777;
   }
- .options-summary .product-price span {
+.options-summary .product-price span {
     font-size: 22px;
   }
 .options-summary .summary-price button:hover{

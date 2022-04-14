@@ -26,7 +26,7 @@
 * to avoid any conflicts with others containers.
 */
 
-console.log('ecConfigurator JS fired !');
+//console.log('related_options JS fired !');
 
 $(window).load(function() {
   $.uniform.restore(".noUniform");
@@ -42,26 +42,28 @@ $(window).load(function() {
   //   }, 1000);
   // });
 
-  // var initCatAccordion = $('.category-item-img')[0];
-  // if(initCatAccordion){
-  //     $(initCatAccordion).trigger("click");
-  // }
+
   var accordions= $('#related-options-accordions');
 
   var blockCategories = accordions.find('.category-item.active-category');
 
     blockCategories.find('.category-item-img i').addClass('icon-minus');
 
+
+
+
 });
 
-//dÃ©plier l'accordeon au click sur l'image
+
+//déplier l'accordeon au click sur l'image
 $(document).on("click", ".category-item-img", function(e) {
   var categoryBlock = this.parentNode;
   var title = categoryBlock.getElementsByClassName('category-title')[0];
   showOptionsList(title);
 });
+
 //deplier l'accorderon au click sur le titre ou le bouton "voir l'option"
-$(document).on("click touchend", ".show-options, .category-title", function (e) {
+$(document).on("click", ".category-title, .category-desc", function (e) {
   showOptionsList(this);
 });
 
@@ -69,10 +71,8 @@ $(document).on("click", ".button-plus, .button-minus", function(e) {
   qtyEdit(this);
 });
 
-
 $(document).on("click", "#quotes-cart-trigger", function(e) {
   var quoteBtn = $('.fly_to_quote_cart_button')[0];
-    //console.log(quoteBtn);
   $(quoteBtn).click();
 });
 
@@ -82,7 +82,7 @@ $(document).on('change', '.option-item-content select', function (e) {
   //Recupere l'image du produit et l'afficher
   var pictureUri = select.options[select.selectedIndex].dataset.picture;
 
-  //Actualisation de l'aperÃ§u de l'image
+  //Actualisation de l'aperçu de l'image
   if(pictureUri){
     var parentBlock = select.parentNode.parentNode;
     var imgBlock = parentBlock.getElementsByClassName('option-item-img')[0];
@@ -98,13 +98,15 @@ $(document).on("click", ".var_radio", function (e) {
 });
 
 function reduceOptions(){
-  //console.log('reduceOptions');
+  // console.log('reduceOptions');
+
   var accordions= document.getElementById('related-options-accordions');
 
   var blockCategories = accordions.getElementsByClassName('category-item');
 
   for (var i = 0; i < blockCategories.length; i++) {
     var blockCat = blockCategories[i];
+
     var addOptBtn = blockCat.getElementsByClassName('option-add')[0];
     if(addOptBtn){
       addOptBtn.style.display = 'none';
@@ -126,7 +128,6 @@ function reduceOptions(){
 
     for (var j = 0; j < optList.length; j++) {
       var opt = optList[j];
-      //console.log(opt);
       var qtyBlock = opt.getElementsByClassName("option-item-qty")[0];
       var qty = qtyBlock.getElementsByClassName('quantity-field')[0].value;
 
@@ -141,7 +142,10 @@ function reduceOptions(){
       }else{
         opt.style.display = 'none';
         opt.classList.remove('selected');
+
       }
+
+      //item.classList.remove('show');
     }
 
   }
@@ -171,12 +175,12 @@ function addVariation(clicked){
   var optBlock = clicked.closest('.option-item');
   var optionId = optBlock.dataset.option;
 
-  //nombre max autorisÃ©
+  //nombre max autorisé
   var max = 5;
-  //compte le nombre de fois que l'attribut est utilisÃ©
+  //compte le nombre de fois que l'attribut est utilisé
   var count = getCountClone(optionId);
   if(count >= 5){
-    //@TODO crÃ©er et rÃ©cupÃ©rer la traduction dynamiquement
+    //@TODO créer et récupérer la traduction dynamiquement
     alert('too much colors!');
   }else{
     var clonedBlock = optBlock.cloneNode(true);
@@ -207,6 +211,7 @@ function addVariation(clicked){
 
 
 function clearOpt(clicked){
+
   var nullQty = 0;
   var optBlock = clicked.closest('.option-item');
   var inputQty = optBlock.getElementsByClassName('quantity-field')[0];
@@ -223,6 +228,7 @@ function clearOpt(clicked){
   reduceOptions();
 }
 
+
 function showOptionsList(clicked){
   reduceOptions();
   var optionsBlock = clicked.parentNode.parentNode;
@@ -230,9 +236,13 @@ function showOptionsList(clicked){
   optionsBlock.querySelector('.category-item-img i').classList.toggle('icon-minus');
 
   if (optionsBlock.classList.contains('active-category')) {
+
     optionsBlock.classList.remove('active-category');
+
+
     //console.log('class active-category has been removed');
   }else{
+
     optionsBlock.classList.add('active-category');
     $(optionsBlock).siblings().removeClass("active-category");
 
@@ -312,7 +322,8 @@ function getVariationValue(var_input){
 
 
 function qtyEdit(clicked){
-  //console.log("qtyEdit");
+  // console.log("qtyEdit");
+
 
   var optBlock = clicked.closest('.option-item');
   var qtyBlock = clicked.closest('.option-item-qty');
@@ -324,6 +335,7 @@ function qtyEdit(clicked){
 
   if(isMinus && inputVal == 0){
     addVal = 0;
+
   }
 
   var newVal = parseInt(inputQty.value, 10) + addVal;
@@ -333,9 +345,11 @@ function qtyEdit(clicked){
 
   if(newVal <= 0){
     optBlock.classList.remove('cartable');
+
   }else{
     optBlock.classList.add('cartable');
     $('#summary_options').fadeIn();
+
 
   }
 
@@ -353,9 +367,9 @@ function qtyEdit(clicked){
 }
 
 function variationBlockCustom(optBlock, newVal){
-  //si quantitÃ© passe au dessus de 0 et que le block est de type 'variation' (couleurs) alors on affiche le bouton pour cloner.
-  //si quantitÃ© passe en dessous de 1 et que le block est clonÃ© alors on supprime le block.
-  //si quantitÃ© passe en dessous de 1 et que le block est seul alors on masque le bouton pour cloner le block.
+  //si quantité passe au dessus de 0 et que le block est de type 'variation' (couleurs) alors on affiche le bouton pour cloner.
+  //si quantité passe en dessous de 1 et que le block est cloné alors on supprime le block.
+  //si quantité passe en dessous de 1 et que le block est seul alors on masque le bouton pour cloner le block.
 
   var isVariation = optBlock.getElementsByClassName('variation-add');
   var variationBtn = optBlock.getElementsByClassName('variation-add')[0];
@@ -425,7 +439,7 @@ function countOptQties(){
 }
 
 function countQtyOptBlock(){
-  //compte 1 fois chaque bloque des qu'il a une quantitÃ©
+  //compte 1 fois chaque bloque des qu'il a une quantité
   var optQtyFields = document.getElementsByClassName('quantity-field');
   var count = 0;
   for (var i = 0; i < optQtyFields.length; i++) {
@@ -439,7 +453,8 @@ function countQtyOptBlock(){
 
 
 
-$(document).on("click", "#cart-summary", function(e) {
+
+$(document).on("click touchend", "#cart-summary", function(e) {
   //console.log('cart-summary');
   var cart_url = document.getElementById('buy_block').action;
   var ipa = document.getElementById('idCombination').value;
@@ -449,32 +464,10 @@ $(document).on("click", "#cart-summary", function(e) {
 
   var toCart = [];
   var main_qty = 1;
+
   if(popup){
     main_qty = 0;
   }
-
-  //recuperation des id des attributs sÃ©lectionnÃ©s
-  // var attr_container = document.getElementById('attributes');
-  // var variations = [];
-  // if(attr_container){
-  //    var attrVal = null;
-  //    var fieldset = attr_container.getElementsByClassName('attribute_list');
-  //
-  //    for (var i = 0; i < fieldset.length; i++) {
-  //      var hiddenField = fieldset[i].querySelector("input[type='hidden']");
-  //      if(hiddenField){
-  //        attrVal = hiddenField.value
-  //        console.log(attrVal);
-  //      }
-  //
-  //      var selectField = fieldset[i].querySelector("select");
-  //      if(selectField){
-  //        attrVal = selectField.options[selectField.selectedIndex].value;
-  //        console.log(attrVal);
-  //      }
-  //
-  //    }
-  // }
 
   var mainProduct = {
     product_id: product_id,
@@ -482,6 +475,8 @@ $(document).on("click", "#cart-summary", function(e) {
     var_id: ipa,
     qty: main_qty,
   };
+  toCart.push(mainProduct);
+
 
   var catOptionBlocks = document.getElementsByClassName('options-list');
   for (var i = 0; i < catOptionBlocks.length; i++) {
@@ -492,6 +487,7 @@ $(document).on("click", "#cart-summary", function(e) {
          var product_id = optionBlock.dataset.option;
          var qty = optionBlock.getElementsByClassName('quantity-field')[0].value;
          var var_input = optionBlock.getElementsByClassName('input-attribute')[0];
+
          var var_id = getVariationValue(var_input);
 
          var option = {
@@ -507,8 +503,9 @@ $(document).on("click", "#cart-summary", function(e) {
      }
    }
 
+
    $.ajax({
-       url: relatedOptions_url + '?action=suboptocart&secure_key=' + secure_key + '&rand=' + new Date().getTime(),
+       url: ecConfigurator_url + '?action=suboptocart&secure_key=' + secure_key + '&rand=' + new Date().getTime(),
        data: {tocart : toCart},//data: $('#id_bsaimmediaterecall_form').serialize(),
        type: 'POST',
        headers: { "cache-control": "no-cache" },
